@@ -1,6 +1,6 @@
 import React from 'react';
 
-const api = "http://localhost:5000";
+const api = "http://lightcontroller-280408594.us-east-1.elb.amazonaws.com:3000";
 
 class Card extends React.Component {
     constructor(props) {
@@ -9,6 +9,7 @@ class Card extends React.Component {
         this.state = {
             id: props.id,
             name: props.name,
+            area: props.area,
             state: props.state
         }
     }
@@ -22,7 +23,7 @@ class Card extends React.Component {
     componentDidMount() {
         this.getData();
         // update value every 5s
-        this.intervalID = setInterval(this.getData.bind(this), 2000);
+        this.intervalID = setInterval(this.getData.bind(this), 1000);
     }
 
     getData = () => {
@@ -52,7 +53,7 @@ class Card extends React.Component {
     };
 
     render() {
-        const {name, state} = this.state;
+        const {name, state, area} = this.state;
         if (state) {
             return (
     
@@ -60,6 +61,7 @@ class Card extends React.Component {
                     <img alt='light bulk pics' src={"https://clipartion.com/wp-content/uploads/2015/11/free-to-use-amp-public-domain-light-bulb-clip-art-page-22.png"} width="200" height="200"/>
                     <div>
                         <h2>{name}</h2>
+                        <h2>{`inside ${area} area`}</h2>
                     </div>
                 </div>
             );
@@ -70,6 +72,7 @@ class Card extends React.Component {
                     <img alt='light bulk pics' src={"https://www.freeiconspng.com/uploads/bulb-off-icon-1.png"} width="200" height="200"/>
                     <div>
                         <h2>{name}</h2>
+                        <h2>{`inside ${area} area`}</h2>
                     </div>
                 </div>
             );

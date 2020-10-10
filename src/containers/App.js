@@ -3,7 +3,7 @@ import React from 'react';
 import CardList from '../components/CardList';
 import './App.css';
 
-const api = "http://localhost:5000";
+const api = "http://lightcontroller-280408594.us-east-1.elb.amazonaws.com:3000";
 
 class App extends React.Component {
     constructor() {

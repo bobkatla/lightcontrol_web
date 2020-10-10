@@ -14,6 +14,7 @@ const CardList = ({lights}) => {
                             key={light.id}
                             id = {light.id}
                             name={light.name} 
+                            area={light.area}
                             state={light.state}
                         />
                     );
