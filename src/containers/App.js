@@ -1,38 +1,26 @@
-import React from 'react';
-// import {robots} from './robots'
+import React, {useEffect, useState} from 'react';
 import CardList from '../components/CardList';
 import './App.css';
 
-const api = "http://lightcontroller-280408594.us-east-1.elb.amazonaws.com:3000";
+const api = "http://localhost:5000";
 
-class App extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            lights: []
-        }
-    }
+function App() {
+    const [lights, setLights] = useState([]);
 
-    componentDidMount() {
+    useEffect(() => {
         fetch(`${api}/getall`)
             .then(response => response.json())
-            .then(lights => this.setState({lights}));
-    }
+            .then(lights => setLights(lights));
+    }, []);
 
-    render() {
-        // using destruct to clean the code
-        const {lights} = this.state;
-        // console.log(lights);
-
-        return !lights.length
-        ? <h1 className='tc'>Loading</h1>
-        : (
-            <div className='tc'>
-                <h1 className='f1'>Test Light</h1>
-                <CardList lights={lights}/>
-            </div>
-        );
-    }
+    return !lights.length
+    ? <h1 className='tc'>Loading</h1>
+    : (
+        <div className='tc'>
+            <h1 className='f1'>Test Light</h1>
+            <CardList lights={lights}/>
+        </div>
+    );
 }
 
 export default App;
